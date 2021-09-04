@@ -1,18 +1,18 @@
 //You can edit ALL of the code here
+// global variables
+const rootElem = document.getElementById("root");
+
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
 
-const rootElem = document.getElementById("root");
-
 function makePageForEpisodes(episodeList) {
   //rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  episodeList.forEach(createdFromList);
+  episodeList.forEach(individualEpisodes);
 }
 
-
-function createdFromList(episode) {
+function individualEpisodes(episode) {
   //console.log(episode.name, episode.image.medium);
   let episodeDiv = document.createElement("div");
   rootElem.appendChild(episodeDiv);
@@ -32,13 +32,6 @@ function createdFromList(episode) {
   let episodeSummary = document.createElement("span");
   episodeDiv.appendChild(episodeSummary);
   episodeSummary.innerHTML = episode.summary;
-
 }
 
-function searchElement () {
-  let episodeInfo = getAllEpisodes();
-  
-}
-
-  
 window.onload = setup;

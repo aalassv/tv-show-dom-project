@@ -1,3 +1,21 @@
 #root {
   color: red;
 }
+
+#root {
+    /* Grid styles */
+  display: grid;
+    /* is going to vertically center the columns on our grid */
+  align-items: center;
+    /* make the columns size min and max */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* give some space to the grid */
+  grid-gap: 0.75rem;
+}
+
+
+div#root div {
+  text-align: center;
+}
+
+
