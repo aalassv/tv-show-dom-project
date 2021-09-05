@@ -1,15 +1,43 @@
 //You can edit ALL of the code here
 // global variables
 const rootElem = document.getElementById("root");
+let inputValue = "";
+const allEpisodes = getAllEpisodes();
+let inputSearch = document.querySelector("#search");
 
 function setup() {
-  const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
+
+  console.log(inputSearch.value);
+  inputSearch.addEventListener("keyup", readInput);
 }
 
-function makePageForEpisodes(episodeList) {
+function readInput(event) {
+  if (event.key === "Enter") {
+    let filterEpisodes = allEpisodes.filter(
+      (value) =>
+        value.name.toLowerCase().includes(inputValue) ||
+        value.summary.toLowerCase().includes(inputValue)
+    );
+    console.log(inputValue);
+    //console.log(filterEpisodes);
+    rootElem.innerHTML = "";
+    makePageForEpisodes(filterEpisodes);
+    inputValue = "";
+    inputSearch.value = "";
+  }
+  //console.log(event)
+  if (event.key === "Backspace") {
+    inputValue = inputValue.substring(0, inputValue.length - 1);
+  } else if (event.which >= 48 && event.which <= 90) {
+    inputValue += event.key.toLowerCase();
+  }
+  console.log(inputValue);
+}
+
+function makePageForEpisodes(curr) {
   //rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  episodeList.forEach(individualEpisodes);
+  curr.forEach(individualEpisodes);
 }
 
 function individualEpisodes(episode) {
