@@ -8,36 +8,23 @@ let inputSearch = document.querySelector("#search");
 function setup() {
   makePageForEpisodes(allEpisodes);
 
-  console.log(inputSearch.value);
   inputSearch.addEventListener("keyup", readInput);
 }
 
 function readInput(event) {
-  if (event.key === "Enter") {
-    let filterEpisodes = allEpisodes.filter(
-      (value) =>
-        value.name.toLowerCase().includes(inputValue) ||
-        value.summary.toLowerCase().includes(inputValue)
-    );
-    console.log(inputValue);
-    //console.log(filterEpisodes);
-    rootElem.innerHTML = "";
-    makePageForEpisodes(filterEpisodes);
-    inputValue = "";
-    inputSearch.value = "";
-  }
-  //console.log(event)
-  if (event.key === "Backspace") {
-    inputValue = inputValue.substring(0, inputValue.length - 1);
-  } else if (event.which >= 48 && event.which <= 90) {
-    inputValue += event.key.toLowerCase();
-  }
+  inputValue = event.target.value;
   console.log(inputValue);
+  let filterEpisodes = allEpisodes.filter(
+    (episode) =>
+      episode.name.toLowerCase().includes(inputValue) ||
+      episode.summary.toLowerCase().includes(inputValue)
+  );
+  rootElem.innerHTML = "";
+  makePageForEpisodes(filterEpisodes);
 }
 
-function makePageForEpisodes(curr) {
-  //rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  curr.forEach(individualEpisodes);
+function makePageForEpisodes(currentValue) {
+  currentValue.forEach(individualEpisodes);
 }
 
 function individualEpisodes(episode) {
@@ -51,7 +38,15 @@ function individualEpisodes(episode) {
 
   let episodeSeason = document.createElement("p");
   episodeDiv.appendChild(episodeSeason);
-  episodeSeason.innerText = `S0${episode.season}E0${episode.number}`;
+  episodeSeason.innerText = zeroPadding();
+
+  function zeroPadding() {
+    if (episode.number < 10) {
+      return `S0${episode.season}E0${episode.number}`;
+    } else {
+      return `S0${episode.season}E${episode.number}`;
+    }
+  }
 
   let episodeImage = document.createElement("img");
   episodeDiv.appendChild(episodeImage);
