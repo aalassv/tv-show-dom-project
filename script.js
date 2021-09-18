@@ -3,6 +3,7 @@
 const rootElem = document.getElementById("root");
 let inputValue = "";
 const allEpisodes = getAllEpisodes();
+let filterEpisodes;
 let inputSearch = document.querySelector("#search");
 
 function setup() {
@@ -14,13 +15,17 @@ function setup() {
 function readInput(event) {
   inputValue = event.target.value;
   console.log(inputValue);
-  let filterEpisodes = allEpisodes.filter(
+  filterEpisodes = allEpisodes.filter(
     (episode) =>
       episode.name.toLowerCase().includes(inputValue) ||
       episode.summary.toLowerCase().includes(inputValue)
   );
   rootElem.innerHTML = "";
   makePageForEpisodes(filterEpisodes);
+
+  let displaying = document.querySelector("#displayCounter");
+  displaying.innerText = `Displaying ${filterEpisodes.length} / 73 Episodes`;
+  displaying.style.color = "red";
 }
 
 function makePageForEpisodes(currentValue) {
