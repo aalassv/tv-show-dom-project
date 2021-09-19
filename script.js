@@ -6,34 +6,36 @@ const allEpisodes = getAllEpisodes();
 let filterEpisodes;
 let inputSearch = document.querySelector("#search");
 
+// main function to show web content.
 function setup() {
   makePageForEpisodes(allEpisodes);
 
   inputSearch.addEventListener("keyup", readInput);
 }
 
+// function to filter input search and display the amount of episodes founded.
 function readInput(event) {
   inputValue = event.target.value;
   console.log(inputValue);
   filterEpisodes = allEpisodes.filter(
     (episode) =>
-      episode.name.toLowerCase().includes(inputValue) ||
-      episode.summary.toLowerCase().includes(inputValue)
+      episode.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+      episode.summary.toLowerCase().includes(inputValue.toLowerCase())
   );
+  //cleaning the rootElem to update every time
   rootElem.innerHTML = "";
   makePageForEpisodes(filterEpisodes);
-
+  //rendering the amount of episodes founded.
   let displaying = document.querySelector("#displayCounter");
   displaying.innerText = `Displaying ${filterEpisodes.length} / 73 Episodes`;
-  displaying.style.color = "red";
+  displaying.style.color = "green";
 }
-
+// function to take the specific array and pass it true a for each to create every card.
 function makePageForEpisodes(currentValue) {
   currentValue.forEach(individualEpisodes);
 }
-
+// function to create every element inside the rootElem.
 function individualEpisodes(episode) {
-  //console.log(episode.name, episode.image.medium);
   let episodeDiv = document.createElement("div");
   rootElem.appendChild(episodeDiv);
 
