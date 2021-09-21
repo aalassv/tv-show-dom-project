@@ -2,6 +2,15 @@
   color: red;
 }
 
+html {
+  background: rgb(228, 245, 221);
+}
+/* Global values
+background-image: inherit;
+background-image: initial;
+background-image: revert;
+background-image: unset;
+} */
 /*
 #root {
     /* Grid styles 
@@ -15,16 +24,62 @@
 }
 */
 
+body {
+  margin: 0;
+  text-align: center;
+}
+
+/* #navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+
+#root {
+  margin-top: 145px;
+  margin-left: .5rem;
+  margin-right: .5rem;
+
+} */
+
+#search--Bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1rem;
+  
+}
+
 #root {
   /* Flex box style layout */
   display: flex;
   flex-wrap: wrap;
- }
+  gap: 1rem;
+}
 
- #root > *{
-  flex: 0 1 33%;
-
- }
+#root > * {
+  flex: 1 2 25%;
+  background: rgb(255, 255, 255);
+}
 
 div#root div span p {
   padding: 1rem;

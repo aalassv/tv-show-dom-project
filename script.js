@@ -5,18 +5,21 @@ let inputValue = "";
 const allEpisodes = getAllEpisodes();
 let filterEpisodes;
 let inputSearch = document.querySelector("#search");
-
+let inputSelectDropDown = document.querySelector("#select__search");
 // main function to show web content.
 function setup() {
   makePageForEpisodes(allEpisodes);
 
   inputSearch.addEventListener("keyup", readInput);
+  selectAnOption(allEpisodes);
+  inputSelectDropDown.addEventListener("change", selectAnOption);
 }
+
+function atSelectionSearch(episode) {}
 
 // function to filter input search and display the amount of episodes founded.
 function readInput(event) {
   inputValue = event.target.value;
-  console.log(inputValue);
   filterEpisodes = allEpisodes.filter(
     (episode) =>
       episode.name.toLowerCase().includes(inputValue.toLowerCase()) ||
@@ -28,8 +31,25 @@ function readInput(event) {
   //rendering the amount of episodes founded.
   let displaying = document.querySelector("#displayCounter");
   displaying.innerText = `Displaying ${filterEpisodes.length} / 73 Episodes`;
-  displaying.style.color = "green";
+  displaying.style.color = "red";
 }
+
+//load all episodes on the select element and let pick one and show it.
+function selectAnOption(event) {
+  //p.innerText = `You have selected: ${p.style.color}`; //+ value;
+  let option = document.createElement("option");
+  inputSelectDropDown.appendChild(option);
+  option.innerText = "Select episode";
+  //console.log(event);
+  event.forEach((episode) => {
+    let option1 = document.createElement("option");
+    inputSelectDropDown.appendChild(option1);
+    option1.innerText = `${zeroPadding(episode)} - ${episode.name}`;
+    //console.log(episode.name);
+  });
+  //option.innerText = `S0${event.season}E0${event.number} - ${event.name}`;
+}
+
 // function to take the specific array and pass it true a for each to create every card.
 function makePageForEpisodes(currentValue) {
   currentValue.forEach(individualEpisodes);
@@ -45,15 +65,7 @@ function individualEpisodes(episode) {
 
   let episodeSeason = document.createElement("p");
   episodeDiv.appendChild(episodeSeason);
-  episodeSeason.innerText = zeroPadding();
-
-  function zeroPadding() {
-    if (episode.number < 10) {
-      return `S0${episode.season}E0${episode.number}`;
-    } else {
-      return `S0${episode.season}E${episode.number}`;
-    }
-  }
+  episodeSeason.innerText = zeroPadding(episode);
 
   let episodeImage = document.createElement("img");
   episodeDiv.appendChild(episodeImage);
@@ -62,6 +74,14 @@ function individualEpisodes(episode) {
   let episodeSummary = document.createElement("span");
   episodeDiv.appendChild(episodeSummary);
   episodeSummary.innerHTML = episode.summary;
+}
+//pull out the 0 if it is needed.
+function zeroPadding(episode) {
+  if (episode.number < 10) {
+    return `S0${episode.season}E0${episode.number}`;
+  } else {
+    return `S0${episode.season}E${episode.number}`;
+  }
 }
 
 window.onload = setup;
