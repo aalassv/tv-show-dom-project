@@ -38,9 +38,11 @@ function atSelectionSearch(episode) {
 
 function refreshEpisodes() {
   rootElem.innerHTML = "";
-  console.log("yap");
   makePageForEpisodes(allEpisodes);
-  console.log("yap");
+
+  let displaying = document.querySelector("#displayCounter");
+  displaying.innerText = `Displaying ${allEpisodes.length} / ${allEpisodes.length} Episodes`;
+  displaying.style.color = "red";
 }
 // function to filter input search and display the amount of episodes founded.
 function readInput(event) {
