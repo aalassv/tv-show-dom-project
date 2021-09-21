@@ -6,12 +6,14 @@ const allEpisodes = getAllEpisodes();
 let filterEpisodes; //search filter
 let inputSearch = document.querySelector("#search");
 let inputSelectDropDown = document.querySelector("#select__search");
+let buttonRefresh = document.querySelector("#reset__episodes");
 // main function to show web content.
 function setup() {
   makePageForEpisodes(allEpisodes); // load all episodes
   inputSearch.addEventListener("keyup", readInput);
   loadSelectElement(allEpisodes); // fill select options
   inputSelectDropDown.addEventListener("change", atSelectionSearch);
+  buttonRefresh.addEventListener("click", refreshEpisodes);
 }
 
 function atSelectionSearch(episode) {
@@ -34,6 +36,12 @@ function atSelectionSearch(episode) {
   displaying.style.color = "red";
 }
 
+function refreshEpisodes() {
+  rootElem.innerHTML = "";
+  console.log("yap");
+  makePageForEpisodes(allEpisodes);
+  console.log("yap");
+}
 // function to filter input search and display the amount of episodes founded.
 function readInput(event) {
   inputValue = event.target.value;
@@ -63,7 +71,6 @@ function loadSelectElement(event) {
     let option1 = document.createElement("option");
     inputSelectDropDown.appendChild(option1);
     option1.innerText = `${zeroPadding(episode)} - ${episode.name}`;
-    console.log(option1);
   });
 }
 
