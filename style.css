@@ -3,8 +3,9 @@
 }
 
 html {
-  background: rgb(228, 245, 221);
+  background: #777;
 }
+
 /* Global values
 background-image: inherit;
 background-image: initial;
@@ -87,10 +88,15 @@ div#root div span p {
 div#root div {
   text-align: center;
   /* giving some effects to every div */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  box-shadow: 4px 4px 15px 2px rgba(black, 0.75);
+  transition: 0.1s;
+  border-radius: 1rem;
+  font-family: "Montserrat", sans-serif;
+  max-width: 35ch;
+  height: 400px;
 }
 
 div#root div:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.09rem);
 }
