@@ -43,7 +43,6 @@ function eventListenerShowDropDown(shows) {
     let selectedName = names.filter((name) => selected.value === name);
     let getOneShow = shows.filter((show) => show.name == selectedName);
     let showId = getOneShow[0].id;
-    console.log(showId);
     async function catchId(id) {
       fetch(`https://api.tvmaze.com/shows/${id}/episodes`)
         .then((response) => response.json())
@@ -68,29 +67,17 @@ function dropDownEventListener(episodes) {
     optionsElements.forEach((option) => names.push(option.value));
     let selectedName = names.filter((name) => selectId.value === name);
     let oneEpisode = episodes.filter((episode) => episode.name == selectedName);
-    console.log(oneEpisode);
+    let displaying = document.querySelector("#displayCounter");
     if (oneEpisode.length === 1) {
       makePageForEpisodes(oneEpisode);
-      console.log("hello");
+      displaying.innerText = `Displaying ${oneEpisode.length} / ${optionsElements.length} Episodes`;
+      displaying.style.color = "red";
     } else {
       makePageForEpisodes(episodes);
+      displaying.innerText = `Displaying ${episodes.length} / ${episodes.length} Episodes`;
+      displaying.style.color = "red";
     }
   });
-
-  /*inputSelectDropDown.addEventListener("change", function () {
-    let episodeSelected = inputSelectDropDown.value;
-    //console.log(episodeSelected);
-    optionSelected = episodes.filter((episode) => {
-      episode.name.includes(episodeSelected);
-      console.log("Hello");
-    });
-    //rootElem.innerHTML = "";
-    makePageForEpisodes(optionSelected);
-
-    let displaying = document.querySelector("#displayCounter");
-    displaying.innerText = `Displaying ${optionSelected.length} / ${episodes.length} Episodes`;
-    displaying.style.color = "red";
-  });  */
 }
 
 //Refresh page
@@ -156,6 +143,7 @@ function makePageForEpisodes(currentValue) {
 function individualEpisodes(episode) {
   let episodeDiv = document.createElement("div");
   rootElem.appendChild(episodeDiv);
+  episodeDiv.classList.add("card__class");
 
   let episodeName = document.createElement("h2");
   episodeDiv.appendChild(episodeName);
@@ -182,9 +170,10 @@ function individualEpisodes(episode) {
   episodeDiv.appendChild(episodeImage);
   episodeImage.src = episode.image.medium;
 
-  let episodeSummary = document.createElement("span");
+  let episodeSummary = document.createElement("div");
   episodeDiv.appendChild(episodeSummary);
   episodeSummary.innerHTML = episode.summary;
+  episodeSummary.classList.add("div__class");
 }
 //pull out the 0 if it is needed.
 function zeroPadding(episode) {

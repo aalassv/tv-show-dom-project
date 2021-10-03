@@ -12,16 +12,32 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <article>  
-    <header id="navbar">
-      <h1>TV -SHOW - Code Your Future</h1>
-      <select name="" id="show__selector"></select>
+  <article>
+    <header>
+      <div id="navbar">
+        <div>
+          <h1>TV SHOW</h1>
+        </div>
+        <div class="nav-select">
+          <select name="" id="show__selector"></select>
+          <span class="custom__arrow"></span>
+        </div>
+      </div>
     </header>
   </article>
   <body>
     <div id="search--Bar">
-      <select type="select" name="" id="select__search"></select>
+      <div class="search-select">
+        <select type="select" name="" id="select__search"></select>
+        <span class="custom__arrow"></span>
+      </div>
       <button id="reset__episodes">All episodes</button>
       <input type="input" id="search" />
       <p id="displayCounter"></p>
